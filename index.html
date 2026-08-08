@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitzii Lk - Educational Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        /* Floating background animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+        }
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: rgba(56, 189, 248, 0.15);
+            border-radius: 50%;
+            animation: floatUp 10s infinite linear;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.8; }
+            100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+        }
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="relative min-h-screen flex flex-col justify-between">
+
+    <!-- Floating Background Animation Elements -->
+    <div class="bg-animation" id="bgAnimation"></div>
+
+    <!-- FORCE SUBSCRIBE / TELEGRAM GATE MODAL -->
+    <div id="joinModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md px-4">
+        <div class="glass max-w-lg w-full p-6 md:p-8 rounded-3xl shadow-2xl text-center border border-sky-500/30">
+            <div class="w-16 h-16 bg-sky-500/20 text-sky-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl shadow-lg shadow-sky-500/20">
+                <i class="fa-brands fa-telegram"></i>
+            </div>
+            <h2 class="text-2xl font-bold mb-2 bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">Join Mitzii Lk Channels</h2>
+            <p class="text-slate-300 text-sm mb-6">Website එකට ඇතුළු වීමට පහත සඳහන් Telegram Channels 4 ට අනිවාර්යයෙන්ම Join වන්න!</p>
+            
+            <div class="space-y-3 mb-6">
+                <a href="https://t.me/Mitziicloud" target="_blank" onclick="markJoined(0)" class="flex items-center justify-between p-3 rounded-xl bg-slate-800/80 hover:bg-sky-600/20 border border-slate-700 hover:border-sky-500 transition-all text-sm font-medium group">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-bullhorn text-sky-400"></i> Mitzii Cloud</span>
+                    <span class="text-xs bg-sky-500 text-white px-3 py-1.5 rounded-lg group-hover:bg-sky-400 transition">Join Now <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                </a>
+                <a href="https://t.me/DevMitziiILk" target="_blank" onclick="markJoined(1)" class="flex items-center justify-between p-3 rounded-xl bg-slate-800/80 hover:bg-sky-600/20 border border-slate-700 hover:border-sky-500 transition-all text-sm font-medium group">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-code text-sky-400"></i> Dev Mitzii LK</span>
+                    <span class="text-xs bg-sky-500 text-white px-3 py-1.5 rounded-lg group-hover:bg-sky-400 transition">Join Now <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                </a>
+                <a href="https://t.me/DevMitzii_lk" target="_blank" onclick="markJoined(2)" class="flex items-center justify-between p-3 rounded-xl bg-slate-800/80 hover:bg-sky-600/20 border border-slate-700 hover:border-sky-500 transition-all text-sm font-medium group">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-terminal text-sky-400"></i> Dev Mitzii Updates</span>
+                    <span class="text-xs bg-sky-500 text-white px-3 py-1.5 rounded-lg group-hover:bg-sky-400 transition">Join Now <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                </a>
+                <a href="https://t.me/AD_Notes_27" target="_blank" onclick="markJoined(3)" class="flex items-center justify-between p-3 rounded-xl bg-slate-800/80 hover:bg-sky-600/20 border border-slate-700 hover:border-sky-500 transition-all text-sm font-medium group">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-book-open text-sky-400"></i> AD Notes 27</span>
+                    <span class="text-xs bg-sky-500 text-white px-3 py-1.5 rounded-lg group-hover:bg-sky-400 transition">Join Now <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                </a>
+            </div>
+
+            <button id="verifyBtn" onclick="verifyAndEnter()" disabled class="w-full py-3.5 rounded-xl bg-slate-700 text-slate-400 font-semibold cursor-not-allowed transition-all shadow-lg">
+                Channels සියල්ලටම Join වන්න (0/4)
+            </button>
+        </div>
+    </div>
+
+    <!-- MAIN APP CONTAINER -->
+    <div id="mainApp" class="hidden flex-col min-h-screen">
+        <!-- HEADER -->
+        <header class="glass sticky top-0 z-40 border-b border-slate-800 px-4 py-3">
+            <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                    <div class="bg-gradient-to-tr from-sky-500 to-indigo-600 p-2.5 rounded-xl shadow-lg shadow-sky-500/30">
+                        <i class="fa-solid fa-graduation-cap text-xl text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">Mitzii Lk</h1>
+                        <p class="text-xs text-slate-400">Sri Lanka's Ultimate Educational Hub</p>
+                    </div>
+                </div>
+
+                <!-- Live Sri Lankan Clock -->
+                <div id="liveClock" class="text-xs font-medium px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700 text-sky-300 shadow-inner">
+                    <i class="fa-regular fa-clock mr-1.5"></i> <span id="clockText">Loading time...</span>
+                </div>
+
+                <!-- Owner Badge -->
+                <a href="http://t.me/Devmitziiiii" target="_blank" class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white text-xs font-semibold shadow-md transition-all">
+                    <i class="fa-solid fa-crown text-amber-300"></i> Owner: Mitzii
+                </a>
+            </div>
+        </header>
+
+        <!-- CONTENT PAGES -->
+        <main class="flex-grow max-w-5xl w-full mx-auto p-4 sm:p-6 mb-16">
+            
+            <!-- PAGE 1: HOME -->
+            <section id="page-home" class="page-content space-y-6">
+                <div class="glass p-6 sm:p-10 rounded-3xl text-center relative overflow-hidden shadow-xl border border-slate-700/50">
+                    <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                    <span class="px-3 py-1 rounded-full bg-sky-500/20 text-sky-400 text-xs font-semibold uppercase tracking-wider">Welcome Students</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold mt-3 mb-4">Learn Smarter with <span class="bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">Mitzii Lk</span></h2>
+                    <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto mb-6">ඔබේ අධ්‍යාපන කටයුතු පහසු කර ගැනීමට අවශ්‍ය Past Papers, AI Study Assistant සහ තවත් බොහෝ දේ එකම තැනකින් ලබා ගන්න.</p>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button onclick="switchPage('papers')" class="px-6 py-3 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-semibold text-sm shadow-lg shadow-sky-500/25 transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-file-arrow-down"></i> Past Papers Download
+                        </button>
+                        <button onclick="switchPage('ai')" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-sky-400 border border-slate-700 font-semibold text-sm transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-robot"></i> AI Study Helper
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Stats / Features Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center">
+                        <div class="w-12 h-12 bg-sky-500/20 text-sky-400 rounded-xl flex items-center justify-center mx-auto mb-3 text-lg"><i class="fa-solid fa-book"></i></div>
+                        <h3 class="font-bold text-white mb-1">Past Papers Hub</h3>
+                        <p class="text-xs text-slate-400">All streams & grades papers updated regularly.</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center">
+                        <div class="w-12 h-12 bg-indigo-500/20 text-indigo-400 rounded-xl flex items-center justify-center mx-auto mb-3 text-lg"><i class="fa-solid fa-brain"></i></div>
+                        <h3 class="font-bold text-white mb-1">Gemini AI Tutor</h3>
+                        <p class="text-xs text-slate-400">Get instant answers for any academic question.</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center">
+                        <div class="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center mx-auto mb-3 text-lg"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h3 class="font-bold text-white mb-1">Secure & Fast</h3>
+                        <p class="text-xs text-slate-400">Direct downloads & user-friendly admin controls.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PAGE 2: PAST PAPERS -->
+            <section id="page-papers" class="page-content hidden space-y-6">
+                <div class="glass p-6 rounded-3xl border border-slate-700/50">
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
+                        <div>
+                            <h2 class="text-2xl font-bold">Past Papers Archive</h2>
+                            <p class="text-xs text-slate-400">Search and download papers instantly</p>
+                        </div>
+                        <div class="w-full sm:w-72 relative">
+                            <input type="text" id="paperSearch" onkeyup="filterPapers()" placeholder="Search subject, year, exam..." class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-sky-500 pl-10">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-500 text-sm"></i>
+                        </div>
+                    </div>
+
+                    <!-- Papers List Container -->
+                    <div id="papersList" class="space-y-3">
+                        <!-- Dynamic items loaded via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- PAGE 3: AI STUDY HELPER & ADMIN PANEL -->
+            <section id="page-ai" class="page-content hidden space-y-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- AI Chat Box -->
+                    <div class="lg:col-span-2 glass p-6 rounded-3xl border border-slate-700/50 flex flex-col h-[500px]">
+                        <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-sky-500/20 text-sky-400 rounded-xl flex items-center justify-center"><i class="fa-solid fa-robot"></i></div>
+                                <div>
+                                    <h3 class="font-bold text-sm">Mitzii AI Tutor</h3>
+                                    <p class="text-xs text-emerald-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Online (Powered by Gemini)</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Chat Messages -->
+                        <div id="chatMessages" class="flex-grow overflow-y-auto space-y-3 pr-2 text-sm">
+                            <div class="bg-slate-800/80 p-3 rounded-2xl max-w-[85%] border border-slate-700">
+                                <p class="text-slate-200">Hello! මම Mitzii AI Study Assistant. ඔබට අධ්‍යාපනයට අදාළ ඕනෑම ප්‍රශ්නයක් මගෙන් අසන්න පුළුවන්!</p>
+                            </div>
+                        </div>
+
+                        <!-- Chat Input -->
+                        <div class="mt-4 pt-3 border-t border-slate-800 flex gap-2">
+                            <input type="text" id="aiInput" onkeypress="handleAiKeyPress(event)" placeholder="Ask your question here..." class="flex-grow bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-sky-500">
+                            <button onclick="sendAiQuery()" class="bg-sky-500 hover:bg-sky-400 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-md">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Admin Panel Controls -->
+                    <div class="glass p-6 rounded-3xl border border-slate-700/50 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 pb-4 border-b border-slate-800 mb-4">
+                                <div class="w-10 h-10 bg-amber-500/20 text-amber-400 rounded-xl flex items-center justify-center"><i class="fa-solid fa-sliders"></i></div>
+                                <div>
+                                    <h3 class="font-bold text-sm">Admin Control Panel</h3>
+                                    <p class="text-xs text-slate-400">Add new past papers instantly</p>
+                                </div>
+                            </div>
+
+                            <form id="addPaperForm" onsubmit="addNewPaper(event)" class="space-y-3">
+                                <div>
+                                    <label class="block text-xs text-slate-300 mb-1">Paper Title</label>
+                                    <input type="text" id="newTitle" required placeholder="e.g. 2025 A/L Physics Paper" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-sky-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-300 mb-1">Category / Subject</label>
+                                    <input type="text" id="newCategory" required placeholder="e.g. Physics / Mathematics" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-sky-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-300 mb-1">Download URL (Direct / Wiki Bypass)</label>
+                                    <input type="url" id="newUrl" required placeholder="https://example.com/paper.pdf" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-sky-500">
+                                </div>
+                                <button type="submit" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition-all shadow-lg shadow-amber-500/20">
+                                    <i class="fa-solid fa-plus mr-1"></i> Add Paper to Database
+                                </button>
+                            </form>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-800 text-center">
+                            <p class="text-[11px] text-slate-500">Data is securely saved in browser storage.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- FLOATING BOTTOM PAGE SWITCHER NAVIGATION BAR -->
+        <nav class="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 glass px-4 py-2 rounded-full border border-slate-700/80 shadow-2xl flex items-center gap-2">
+            <button onclick="switchPage('home')" id="nav-btn-home" class="nav-btn px-4 py-2 rounded-full text-xs font-semibold bg-sky-500 text-white transition-all flex items-center gap-2 shadow-md">
+                <i class="fa-solid fa-house"></i> Home
+            </button>
+            <button onclick="switchPage('papers')" id="nav-btn-papers" class="nav-btn px-4 py-2 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all flex items-center gap-2">
+                <i class="fa-solid fa-file-lines"></i> Papers
+            </button>
+            <button onclick="switchPage('ai')" id="nav-btn-ai" class="nav-btn px-4 py-2 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all flex items-center gap-2">
+                <i class="fa-solid fa-brain"></i> AI & Admin
+            </button>
+        </nav>
+
+        <!-- FOOTER -->
+        <footer class="glass border-t border-slate-800 text-center py-4 text-xs text-slate-400">
+            <p>&copy; 2026 Mitzii Lk. All Rights Reserved. Created with ❤️ for Sri Lankan Students.</p>
+        </footer>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Background Floating Bubbles Generator
+        const bgContainer = document.getElementById('bgAnimation');
+        for (let i = 0; i < 20; i++) {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            const size = Math.random() * 60 + 20 + 'px';
+            bubble.style.width = size;
+            bubble.style.height = size;
+            bubble.style.left = Math.random() * 100 + '%';
+            bubble.style.animationDuration = (Math.random() * 10 + 8) + 's';
+            bubble.style.animationDelay = (Math.random() * 5) + 's';
+            bgContainer.appendChild(bubble);
+        }
+
+        // Telegram Force-Sub Logic
+        let joinedChannels = [false, false, false, false];
+
+        function markJoined(index) {
+            joinedChannels[index] = true;
+            checkVerification();
+        }
+
+        function checkVerification() {
+            const joinedCount = joinedChannels.filter(Boolean).length;
+            const verifyBtn = document.getElementById('verifyBtn');
+            verifyBtn.innerText = `Channels සියල්ලටම Join වන්න (${joinedCount}/4)`;
+            
+            if (joinedCount === 4) {
+                verifyBtn.disabled = false;
+                verifyBtn.classList.remove('bg-slate-700', 'text-slate-400', 'cursor-not-allowed');
+                verifyBtn.classList.add('bg-gradient-to-r', 'from-sky-500', 'to-indigo-600', 'text-white', 'hover:opacity-90', 'cursor-pointer', 'shadow-sky-500/30');
+            }
+        }
+
+        function verifyAndEnter() {
+            if (joinedChannels.filter(Boolean).length === 4) {
+                document.getElementById('joinModal').style.display = 'none';
+                const mainApp = document.getElementById('mainApp');
+                mainApp.classList.remove('hidden');
+                mainApp.classList.add('flex');
+            }
+        }
+
+        // Live Sri Lankan Clock
+        function updateClock() {
+            const options = { timeZone: 'Asia/Colombo', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+            const timeString = new Intl.DateTimeFormat([], options).format(new Date());
+            document.getElementById('clockText').innerText = timeString + " (SL)";
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Page Navigation Switcher
+        function switchPage(pageId) {
+            document.querySelectorAll('.page-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById('page-' + pageId).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-sky-500', 'text-white', 'shadow-md');
+                btn.classList.add('text-slate-300');
+            });
+            const activeBtn = document.getElementById('nav-btn-' + (pageId === 'ai' ? 'ai' : pageId));
+            activeBtn.classList.add('bg-sky-500', 'text-white', 'shadow-md');
+            activeBtn.classList.remove('text-slate-300');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Past Papers Database & Admin System
+        let papers = JSON.parse(localStorage.getItem('mitzii_papers')) || [
+            { title: "2024 A/L Combined Mathematics Paper I & II", category: "Mathematics", url: "https://www.doenets.lk" },
+            { title: "2024 A/L Physics Resource & Past Paper", category: "Physics", url: "https://www.doenets.lk" },
+            { title: "2023 A/L Chemistry Tamil / Sinhala Medium", category: "Chemistry", url: "https://www.doenets.lk" },
+            { title: "G.C.E. O/L Science Model Paper 2025", category: "Science", url: "https://www.doenets.lk" }
+        ];
+
+        function renderPapers(filter = "") {
+            const listContainer = document.getElementById('papersList');
+            listContainer.innerHTML = "";
+            const filtered = papers.filter(p => p.title.toLowerCase().includes(filter.toLowerCase()) || p.category.toLowerCase().includes(filter.toLowerCase()));
+            
+            if (filtered.length === 0) {
+                listContainer.innerHTML = `<p class="text-center text-slate-400 py-6 text-sm">No past papers found matching your search.</p>`;
+                return;
+            }
+
+            filtered.forEach((paper, index) => {
+                listContainer.innerHTML += `
+                    <div class="glass-card p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border border-slate-800 hover:border-sky-500/50 transition-all">
+                        <div>
+                            <span class="text-[10px] bg-sky-500/20 text-sky-400 px-2.5 py-1 rounded-full font-semibold uppercase">${paper.category}</span>
+                            <h4 class="font-semibold text-sm text-slate-100 mt-1.5">${paper.title}</h4>
+                        </div>
+                        <a href="${paper.url}" target="_blank" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all shadow-md shadow-sky-600/20">
+                            <i class="fa-solid fa-download"></i> Download Paper
+                        </a>
+                    </div>
+                `;
+            });
+        }
+
+        function filterPapers() {
+            const query = document.getElementById('paperSearch').value;
+            renderPapers(query);
+        }
+
+        function addNewPaper(e) {
+            e.preventDefault();
+            const title = document.getElementById('newTitle').value;
+            const category = document.getElementById('newCategory').value;
+            const url = document.getElementById('newUrl').value;
+
+            papers.unshift({ title, category, url });
+            localStorage.setItem('mitzii_papers', JSON.stringify(papers));
+            renderPapers();
+            document.getElementById('addPaperForm').reset();
+            alert("Past Paper successfully added to the website!");
+        }
+
+        renderPapers();
+
+        // AI Chat Integration with your API endpoint
+        function handleAiKeyPress(e) {
+            if (e.key === 'Enter') sendAiQuery();
+        }
+
+        async function sendAiQuery() {
+            const inputField = document.getElementById('aiInput');
+            const query = inputField.value.trim();
+            if (!query) return;
+
+            const chatMessages = document.getElementById('chatMessages');
+            
+            // Append User Message
+            chatMessages.innerHTML += `
+                <div class="flex justify-end">
+                    <div class="bg-sky-600 text-white p-3 rounded-2xl max-w-[85%] text-sm shadow-md">
+                        <p>${query}</p>
+                    </div>
+                </div>
+            `;
+            inputField.value = "";
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Loading state
+            const loadingId = "loading_" + Date.now();
+            chatMessages.innerHTML += `
+                <div id="${loadingId}" class="flex justify-start">
+                    <div class="bg-slate-800 text-slate-400 p-3 rounded-2xl max-w-[85%] text-sm border border-slate-700 flex items-center gap-2">
+                        <i class="fa-solid fa-spinner animate-spin"></i> Thinking...
+                    </div>
+                </div>
+            `;
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            try {
+                const response = await fetch(`https://api.bk9.dev/ai/gemini?q=${encodeURIComponent(query)}`);
+                const data = await response.json();
+                
+                document.getElementById(loadingId).remove();
+                
+                const aiReply = data.status && data.result ? data.result : "මාව සම්බන්ධ කරගැනීමේදී දෝෂයක් සිදු විය. කරුණාකර නැවත උත්සාහ කරන්න.";
+
+                chatMessages.innerHTML += `
+                    <div class="flex justify-start">
+                        <div class="bg-slate-800 text-slate-200 p-3 rounded-2xl max-w-[85%] text-sm border border-slate-700 shadow-md">
+                            <p>${aiReply}</p>
+                        </div>
+                    </div>
+                `;
+            } catch (err) {
+                document.getElementById(loadingId).remove();
+                chatMessages.innerHTML += `
+                    <div class="flex justify-start">
+                        <div class="bg-rose-500/20 text-rose-300 p-3 rounded-2xl max-w-[85%] text-sm border border-rose-500/30">
+                            <p>Network Error! කරුණාකර අන්තර්ජාල සම්බන්ධතාවය පරීක්ෂා කරන්න.</p>
+                        </div>
+                    </div>
+                `;
+            }
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    </script>
+</body>
+</html>
