@@ -1,252 +1,280 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mitzii Lk - Ultimate Cyber Educational Hub</title>
+    <title>Mitzii Lk - Official Cyber Educational Portal</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: #030712;
+            background-color: #020617;
             color: #f8fafc;
             overflow-x: hidden;
         }
         .cyber-font {
             font-family: 'Orbitron', sans-serif;
         }
-        /* Cyber Starry / Particle Background Animation */
-        .bg-cyber {
+        /* Deep Blue & Black Cyber Particle Background Animation */
+        .cyber-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at center, #0f172a 0%, #030712 100%);
+            background: radial-gradient(circle at 50% 50%, #090d16 0%, #020617 100%);
             overflow: hidden;
         }
-        .star {
+        .particle {
             position: absolute;
-            background: #38bdf8;
+            background: #0ea5e9;
             border-radius: 50%;
-            animation: twinkle var(--duration) infinite ease-in-out, drift var(--drift-duration) infinite linear;
+            box-shadow: 0 0 12px #0ea5e9, 0 0 25px #0284c7;
+            animation: floatParticle var(--speed) infinite linear, pulseGlow 3s infinite ease-in-out;
         }
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.2; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 10px #38bdf8; }
+        @keyframes floatParticle {
+            0% { transform: translateY(105vh) translateX(0); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) translateX(var(--drift)); opacity: 0; }
         }
-        @keyframes drift {
-            0% { transform: translateY(0) translateX(0); }
-            50% { transform: translateY(-50vh) translateX(20px); }
-            100% { transform: translateY(-105vh) translateX(-20px); }
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(0.8); }
+            50% { transform: scale(1.2); }
         }
-        .glass-cyber {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.05);
+        .glass-official {
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(14, 165, 233, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
         }
         .glass-card {
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.07);
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(14, 165, 233, 0.15);
+            transition: all 0.3s ease;
         }
-        .cyber-glow {
-            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+        .glass-card:hover {
+            border-color: rgba(14, 165, 233, 0.5);
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.2);
+            transform: translateY(-3px);
+        }
+        .neon-glow {
+            text-shadow: 0 0 15px rgba(14, 165, 233, 0.6);
         }
     </style>
 </head>
-<body class="relative min-h-screen flex flex-col justify-between">
+<body class="relative min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white">
 
-    <!-- Cyber Background Animation Container -->
-    <div class="bg-cyber" id="cyberBg"></div>
+    <!-- Deep Blue Floating Particles Background Animation -->
+    <div class="cyber-bg" id="cyberBg"></div>
 
-    <!-- FORCE SUBSCRIBE / TELEGRAM GATE MODAL (Secure Check) -->
-    <div id="joinModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-xl px-4">
-        <div class="glass-cyber max-w-lg w-full p-6 md:p-8 rounded-3xl shadow-2xl text-center border border-sky-500/40">
-            <div class="w-16 h-16 bg-sky-500/20 text-sky-400 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl shadow-lg shadow-sky-500/30 border border-sky-500/30">
-                <i class="fa-brands fa-telegram"></i>
+    <!-- FORCE SUBSCRIBE / TELEGRAM GATE MODAL (Strict Security) -->
+    <div id="joinModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-2xl px-4">
+        <div class="glass-official max-w-xl w-full p-8 md:p-10 rounded-3xl shadow-2xl text-center border border-sky-500/40">
+            <div class="w-20 h-20 bg-sky-500/10 text-sky-400 rounded-3xl flex items-center justify-center mx-auto mb-5 text-3xl shadow-xl shadow-sky-500/20 border border-sky-500/30">
+                <i class="fa-brands fa-telegram animate-bounce"></i>
             </div>
-            <h2 class="text-2xl font-bold mb-2 cyber-font bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">Security Verification</h2>
-            <p class="text-slate-300 text-xs md:text-sm mb-6">වෙබ් අඩවියට පිවිසීමට පහත සඳහන් Telegram Channels 4 ට **අනිවාර්යයෙන්ම Join වී**, සෑම බොත්තමක්ම Click කර තහවුරු කරන්න!</p>
+            <h2 class="text-3xl font-extrabold mb-3 cyber-font bg-gradient-to-r from-sky-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">Official Security Verification</h2>
+            <p class="text-slate-300 text-sm mb-8 leading-relaxed">Mitzii Lk නිල වෙබ් අඩවියට පිවිසීමට පහත සඳහන් නිල Telegram Channels 4 ට **අනිවාර්යයෙන්ම Join වී**, සෑම බොත්තමක්ම ක්ලික් කර පද්ධතිය තහවුරු කරන්න!</p>
             
-            <div class="space-y-3 mb-6 text-left">
-                <div class="flex items-center justify-between p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-                    <span class="flex items-center gap-3 text-xs md:text-sm text-slate-200"><i class="fa-solid fa-bullhorn text-sky-400"></i> Mitzii Cloud</span>
-                    <a href="https://t.me/Mitziicloud" target="_blank" onclick="verifyChannel(0)" class="text-xs bg-sky-600 hover:bg-sky-500 text-white px-3 py-1.5 rounded-lg transition shadow-md">Join Channel <i class="fa-solid fa-arrow-right ml-1"></i></a>
+            <div class="space-y-3.5 mb-8 text-left">
+                <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-sky-500/50 transition">
+                    <span class="flex items-center gap-3 text-sm font-medium text-slate-200"><i class="fa-solid fa-bullhorn text-sky-400"></i> Mitzii Cloud</span>
+                    <a href="https://t.me/Mitziicloud" target="_blank" onclick="verifyChannel(0)" class="text-xs bg-sky-600 hover:bg-sky-500 text-white px-4 py-2 rounded-xl transition font-semibold shadow-md flex items-center gap-1.5">Join <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
-                <div class="flex items-center justify-between p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-                    <span class="flex items-center gap-3 text-xs md:text-sm text-slate-200"><i class="fa-solid fa-code text-sky-400"></i> Dev Mitzii LK</span>
-                    <a href="https://t.me/DevMitziiILk" target="_blank" onclick="verifyChannel(1)" class="text-xs bg-sky-600 hover:bg-sky-500 text-white px-3 py-1.5 rounded-lg transition shadow-md">Join Channel <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-sky-500/50 transition">
+                    <span class="flex items-center gap-3 text-sm font-medium text-slate-200"><i class="fa-solid fa-code text-sky-400"></i> Dev Mitzii LK</span>
+                    <a href="https://t.me/DevMitziiILk" target="_blank" onclick="verifyChannel(1)" class="text-xs bg-sky-600 hover:bg-sky-500 text-white px-4 py-2 rounded-xl transition font-semibold shadow-md flex items-center gap-1.5">Join <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
-                <div class="flex items-center justify-between p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-                    <span class="flex items-center gap-3 text-xs md:text-sm text-slate-200"><i class="fa-solid fa-terminal text-sky-400"></i> Dev Mitzii Updates</span>
-                    <a href="https://t.me/DevMitzii_lk" target="_blank" onclick="verifyChannel(2)" class="text-xs bg-sky-600 hover:bg-sky-500 text-white px-3 py-1.5 rounded-lg transition shadow-md">Join Channel <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-sky-500/50 transition">
+                    <span class="flex items-center gap-3 text-sm font-medium text-slate-200"><i class="fa-solid fa-terminal text-sky-400"></i> Dev Mitzii Updates</span>
+                    <a href="https://t.me/DevMitzii_lk" target="_blank" onclick="verifyChannel(2)" class="text-xs bg-sky-600 hover:bg-sky-500 text-white px-4 py-2 rounded-xl transition font-semibold shadow-md flex items-center gap-1.5">Join <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
-                <div class="flex items-center justify-between p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-                    <span class="flex items-center gap-3 text-xs md:text-sm text-slate-200"><i class="fa-solid fa-book-open text-sky-400"></i> AD Notes 27</span>
-                    <a href="https://t.me/AD_Notes_27" target="_blank" onclick="verifyChannel(3)" class="text-xs bg-sky-600 hover:bg-sky-500 text-white px-3 py-1.5 rounded-lg transition shadow-md">Join Channel <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-sky-500/50 transition">
+                    <span class="flex items-center gap-3 text-sm font-medium text-slate-200"><i class="fa-solid fa-book-open text-sky-400"></i> AD Notes 27</span>
+                    <a href="https://t.me/AD_Notes_27" target="_blank" onclick="verifyChannel(3)" class="text-xs bg-sky-600 hover:bg-sky-500 text-white px-4 py-2 rounded-xl transition font-semibold shadow-md flex items-center gap-1.5">Join <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
 
-            <button id="finalEnterBtn" onclick="grantAccess()" disabled class="w-full py-3.5 rounded-xl bg-slate-800 text-slate-500 font-semibold text-sm cursor-not-allowed transition-all border border-slate-700">
-                🔒 Access Locked (Channels 4 ටම Join වන්න)
+            <button id="finalEnterBtn" onclick="grantAccess()" disabled class="w-full py-4 rounded-2xl bg-slate-800 text-slate-500 font-bold text-sm cursor-not-allowed transition-all border border-slate-700 shadow-inner">
+                🔒 Access Locked (Channels 4 ටම Join වන්න: 0/4)
             </button>
         </div>
     </div>
 
     <!-- MAIN APP CONTAINER -->
     <div id="mainApp" class="hidden flex-col min-h-screen">
-        <!-- HEADER -->
-        <header class="glass-cyber sticky top-0 z-40 border-b border-sky-500/20 px-4 py-3">
-            <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-                <div class="flex items-center gap-3">
-                    <div class="bg-gradient-to-tr from-sky-500 to-indigo-600 p-2.5 rounded-xl shadow-lg shadow-sky-500/30 border border-sky-400/30">
-                        <i class="fa-solid fa-shield-cat text-xl text-white"></i>
+        
+        <!-- OFFICIAL HEADER NAVBAR -->
+        <header class="glass-official sticky top-0 z-45 border-b border-sky-500/20 px-6 py-4">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="bg-gradient-to-tr from-sky-600 to-blue-500 p-3 rounded-2xl shadow-lg shadow-sky-500/30 border border-sky-400/40">
+                        <i class="fa-solid fa-graduation-cap text-2xl text-white"></i>
                     </div>
                     <div>
-                        <h1 class="text-xl font-extrabold cyber-font tracking-wider bg-gradient-to-r from-sky-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">Mitzii Lk</h1>
-                        <p class="text-[10px] text-sky-400 uppercase tracking-widest font-semibold">Cyber Educational Framework v3.0</p>
+                        <h1 class="text-2xl font-black cyber-font tracking-wider bg-gradient-to-r from-sky-400 via-blue-300 to-indigo-400 bg-clip-text text-transparent neon-glow">MITZII LK</h1>
+                        <p class="text-[11px] text-sky-400 uppercase tracking-widest font-bold">Official Cyber Educational Framework</p>
                     </div>
                 </div>
 
-                <!-- Live Sri Lankan Clock -->
-                <div id="liveClock" class="text-xs font-mono px-3 py-1.5 rounded-xl bg-slate-900/90 border border-sky-500/30 text-sky-300 shadow-inner flex items-center gap-2">
-                    <i class="fa-regular fa-clock text-sky-400 animate-pulse"></i> <span id="clockText">Loading...</span>
-                </div>
+                <!-- Navigation Tabs (Desktop) -->
+                <nav class="hidden md:flex items-center gap-2 bg-slate-950/80 p-1.5 rounded-2xl border border-sky-500/20">
+                    <button onclick="switchPage('home')" id="desktop-btn-home" class="desktop-nav px-5 py-2.5 rounded-xl text-xs font-bold bg-sky-600 text-white transition-all shadow-lg flex items-center gap-2">
+                        <i class="fa-solid fa-house"></i> Home Portal
+                    </button>
+                    <button onclick="switchPage('papers')" id="desktop-btn-papers" class="desktop-nav px-5 py-2.5 rounded-xl text-xs font-bold text-slate-300 hover:text-white transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-file-lines"></i> Past Papers Archive
+                    </button>
+                    <button onclick="switchPage('ai')" id="desktop-btn-ai" class="desktop-nav px-5 py-2.5 rounded-xl text-xs font-bold text-slate-300 hover:text-white transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-brain"></i> Mitzii AI Assistant
+                    </button>
+                </nav>
 
-                <!-- Owner Badge -->
-                <a href="http://t.me/Devmitziiiii" target="_blank" class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white text-xs font-semibold shadow-lg shadow-sky-500/20 border border-sky-400/30 transition-all">
-                    <i class="fa-solid fa-crown text-amber-300"></i> Owner: Mitzii
-                </a>
+                <!-- Clock & Owner Badge -->
+                <div class="flex items-center gap-3">
+                    <div id="liveClock" class="text-xs font-mono px-4 py-2 rounded-2xl bg-slate-950/90 border border-sky-500/30 text-sky-300 shadow-inner flex items-center gap-2">
+                        <i class="fa-regular fa-clock text-sky-400 animate-pulse"></i> <span id="clockText">Loading...</span>
+                    </div>
+                    <a href="http://t.me/Devmitziiiii" target="_blank" class="flex items-center gap-2 px-4 py-2 rounded-2xl bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white text-xs font-bold shadow-lg shadow-sky-500/25 border border-sky-400/30 transition-all">
+                        <i class="fa-solid fa-crown text-amber-300"></i> Mitzii Owner
+                    </a>
+                </div>
             </div>
         </header>
 
-        <!-- CONTENT PAGES -->
-        <main class="flex-grow max-w-5xl w-full mx-auto p-4 sm:p-6 mb-20">
+        <!-- MAIN CONTENT AREA -->
+        <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-8 mb-24">
             
-            <!-- PAGE 1: HOME -->
-            <section id="page-home" class="page-content space-y-6">
-                <div class="glass-cyber p-6 sm:p-10 rounded-3xl text-center relative overflow-hidden shadow-2xl border border-sky-500/30">
-                    <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                    <span class="px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 text-xs font-semibold uppercase tracking-wider border border-sky-500/30">Next-Gen Learning Portal</span>
-                    <h2 class="text-3xl sm:text-5xl font-extrabold mt-4 mb-4 cyber-font">Welcome to <span class="bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">Mitzii Lk</span></h2>
-                    <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto mb-8 font-light">ශ්‍රී ලංකීය සිසුන් වෙනුවෙන් නිර්මාණය කරන ලද ಅತ್ಯಾಧುನික සයිබර් අධ්‍යාපන අවකාශය. Past Papers, AI Study Companion සහ තවත් බොහෝ දේ පහසුවෙන් ලබා ගන්න.</p>
-                    <div class="flex flex-wrap justify-center gap-4">
-                        <button onclick="switchPage('papers')" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white font-semibold text-sm shadow-xl shadow-sky-500/30 transition-all flex items-center gap-2 border border-sky-400/30">
-                            <i class="fa-solid fa-file-arrow-down"></i> Past Papers Archive
-                        </button>
-                        <button onclick="switchPage('ai')" class="px-6 py-3.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-sky-400 border border-sky-500/30 font-semibold text-sm transition-all flex items-center gap-2 shadow-lg">
-                            <i class="fa-solid fa-brain"></i> AI Study Assistant
-                        </button>
+            <!-- PAGE 1: HOME PORTAL -->
+            <section id="page-home" class="page-content space-y-8 animate-fadeIn">
+                <!-- Hero Banner -->
+                <div class="glass-official p-8 md:p-14 rounded-3xl relative overflow-hidden shadow-2xl border border-sky-500/30 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="max-w-2xl z-10">
+                        <span class="px-4 py-1.5 rounded-full bg-sky-500/20 text-sky-300 text-xs font-bold uppercase tracking-widest border border-sky-500/40">Official Sri Lankan Hub</span>
+                        <h2 class="text-4xl md:text-6xl font-black mt-4 mb-4 cyber-font leading-tight">Empowering Education with <span class="bg-gradient-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">Mitzii Lk</span></h2>
+                        <p class="text-slate-300 text-sm md:text-base mb-8 leading-relaxed font-light">ශ්‍රී ලංකීය උසස් පෙළ සහ සාමාන්‍ය පෙළ සිසුන් වෙනුවෙන් විශේෂයෙන් නිර්මාණය කරන ලද නිල අධ්‍යාපන මධ්‍යස්ථානය. උසස් ප්‍රමිතියේ Past Papers සහ Mitzii AI සහායකයෙකු දැන් එකම තැනකින්.</p>
+                        <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                            <button onclick="switchPage('papers')" class="px-7 py-4 rounded-2xl bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white font-bold text-sm shadow-xl shadow-sky-500/30 transition-all flex items-center gap-2.5 border border-sky-400/30">
+                                <i class="fa-solid fa-file-arrow-down"></i> Browse Past Papers
+                            </button>
+                            <button onclick="switchPage('ai')" class="px-7 py-4 rounded-2xl bg-slate-900/90 hover:bg-slate-800 text-sky-400 border border-sky-500/30 font-bold text-sm transition-all flex items-center gap-2.5 shadow-lg">
+                                <i class="fa-solid fa-robot"></i> Ask Mitzii AI
+                            </button>
+                        </div>
+                    </div>
+                    <div class="w-48 h-48 md:w-64 md:h-64 bg-sky-500/10 rounded-full border border-sky-500/30 flex items-center justify-center relative shadow-2xl animate-pulse">
+                        <i class="fa-solid fa-shield-halved text-7xl md:text-8xl text-sky-400"></i>
                     </div>
                 </div>
 
-                <!-- Features Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div class="glass-card p-6 rounded-2xl border border-slate-800 text-center hover:border-sky-500/40 transition-all">
-                        <div class="w-12 h-12 bg-sky-500/20 text-sky-400 rounded-xl flex items-center justify-center mx-auto mb-3 text-lg border border-sky-500/30"><i class="fa-solid fa-file-lines"></i></div>
-                        <h3 class="font-bold text-white mb-1">Instant Papers</h3>
-                        <p class="text-xs text-slate-400">Direct download access with high speed servers.</p>
+                <!-- Feature Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-card p-8 rounded-3xl border border-sky-500/20 text-center">
+                        <div class="w-16 h-16 bg-sky-500/20 text-sky-400 rounded-2xl flex items-center justify-center mx-auto mb-5 text-2xl border border-sky-500/30 shadow-lg"><i class="fa-solid fa-cloud-arrow-down"></i></div>
+                        <h3 class="font-bold text-lg text-white mb-2 cyber-font">Direct Paper Archive</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">සියලුම විෂයයන්ට අදාළ පසුගිය විභාග ප්‍රශ්න පත්‍ර කිසිදු පැකිලීමකින් තොරව ක්ෂණිකව බාගත කරගන්න.</p>
                     </div>
-                    <div class="glass-card p-6 rounded-2xl border border-slate-800 text-center hover:border-sky-500/40 transition-all">
-                        <div class="w-12 h-12 bg-indigo-500/20 text-indigo-400 rounded-xl flex items-center justify-center mx-auto mb-3 text-lg border border-indigo-500/30"><i class="fa-solid fa-microchip"></i></div>
-                        <h3 class="font-bold text-white mb-1">Gemini AI Engine</h3>
-                        <p class="text-xs text-slate-400">Accurate real-time answers for study queries.</p>
+                    <div class="glass-card p-8 rounded-3xl border border-sky-500/20 text-center">
+                        <div class="w-16 h-16 bg-blue-500/20 text-blue-400 rounded-2xl flex items-center justify-center mx-auto mb-5 text-2xl border border-blue-500/30 shadow-lg"><i class="fa-solid fa-brain"></i></div>
+                        <h3 class="font-bold text-lg text-white mb-2 cyber-font">Mitzii AI Engine</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">අධ්‍යාපනික ගැටලු සහ විද්‍යාත්මක පරීක්ෂණ සඳහා Mitzii AI හරහා ක්ෂණික නිවැරදි පිළිතුරු ලබා ගන්න.</p>
                     </div>
-                    <div class="glass-card p-6 rounded-2xl border border-slate-800 text-center hover:border-sky-500/40 transition-all">
-                        <div class="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center mx-auto mb-3 text-lg border border-emerald-500/30"><i class="fa-solid fa-lock"></i></div>
-                        <h3 class="font-bold text-white mb-1">Secured Platform</h3>
-                        <p class="text-xs text-slate-400">Protected channels & exclusive admin controls.</p>
+                    <div class="glass-card p-8 rounded-3xl border border-sky-500/20 text-center">
+                        <div class="w-16 h-16 bg-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mx-auto mb-5 text-2xl border border-indigo-500/30 shadow-lg"><i class="fa-solid fa-shield-virus"></i></div>
+                        <h3 class="font-bold text-lg text-white mb-2 cyber-font">Official Security</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">ආරක්ෂිත සහ විශ්වාසදායක සයිබර් පද්ධතියක් හරහා ඔබේ අධ්‍යයන කටයුතු අඛණ්ඩව කරගෙන යන්න.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- PAGE 2: PAST PAPERS -->
-            <section id="page-papers" class="page-content hidden space-y-6">
-                <div class="glass-cyber p-6 sm:p-8 rounded-3xl border border-sky-500/20">
-                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
+            <!-- PAGE 2: PAST PAPERS ARCHIVE -->
+            <section id="page-papers" class="page-content hidden space-y-8 animate-fadeIn">
+                <div class="glass-official p-6 md:p-10 rounded-3xl border border-sky-500/30">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
                         <div>
-                            <h2 class="text-2xl font-bold cyber-font">Past Papers Archive</h2>
-                            <p class="text-xs text-slate-400">Search and download papers instantly</p>
+                            <h2 class="text-3xl font-black cyber-font bg-gradient-to-r from-sky-400 to-blue-400 bg-clip-text text-transparent">Past Papers Archive</h2>
+                            <p class="text-xs md:text-sm text-slate-400 mt-1">Search, filter and download official past papers instantly</p>
                         </div>
-                        <div class="w-full sm:w-72 relative">
-                            <input type="text" id="paperSearch" onkeyup="filterPapers()" placeholder="Search subject, year..." class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-sky-500 pl-10 shadow-inner">
-                            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-sky-400 text-sm"></i>
+                        <div class="w-full md:w-96 relative">
+                            <input type="text" id="paperSearch" onkeyup="filterPapers()" placeholder="Search paper title, subject, year..." class="w-full bg-slate-950/90 border border-sky-500/30 rounded-2xl px-5 py-3.5 text-sm text-slate-200 focus:outline-none focus:border-sky-400 pl-12 shadow-inner">
+                            <i class="fa-solid fa-magnifying-glass absolute left-4.5 top-4 text-sky-400 text-sm"></i>
                         </div>
                     </div>
 
                     <!-- Papers List Container -->
-                    <div id="papersList" class="space-y-3">
+                    <div id="papersList" class="space-y-4">
                         <!-- Dynamic items loaded via JS -->
                     </div>
                 </div>
             </section>
 
-            <!-- PAGE 3: AI STUDY HELPER & HIDDEN ADMIN PANEL -->
-            <section id="page-ai" class="page-content hidden space-y-6">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- PAGE 3: MITZII AI ASSISTANT & HIDDEN ADMIN PANEL -->
+            <section id="page-ai" class="page-content hidden space-y-8 animate-fadeIn">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <!-- AI Chat Box -->
-                    <div class="lg:col-span-3 glass-cyber p-6 rounded-3xl border border-sky-500/20 flex flex-col h-[550px]">
-                        <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-4">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-sky-500/20 text-sky-400 rounded-xl flex items-center justify-center border border-sky-500/30"><i class="fa-solid fa-robot"></i></div>
+                    <div class="lg:col-span-3 glass-official p-6 md:p-8 rounded-3xl border border-sky-500/30 flex flex-col h-[650px]">
+                        <div class="flex items-center justify-between pb-5 border-b border-sky-500/20 mb-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-sky-500/20 text-sky-400 rounded-2xl flex items-center justify-center border border-sky-500/30 shadow-md"><i class="fa-solid fa-robot text-xl"></i></div>
                                 <div>
-                                    <h3 class="font-bold text-sm cyber-font">Mitzii AI Study Companion</h3>
-                                    <p class="text-xs text-emerald-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Gemini Engine Online</p>
+                                    <h3 class="font-bold text-base cyber-font text-white">Mitzii AI Study Assistant</h3>
+                                    <p class="text-xs text-emerald-400 flex items-center gap-2 mt-0.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span> Neural Engine Active & Connected</p>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Chat Messages -->
-                        <div id="chatMessages" class="flex-grow overflow-y-auto space-y-3 pr-2 text-sm">
-                            <div class="bg-slate-900/80 p-3.5 rounded-2xl max-w-[85%] border border-slate-800">
-                                <p class="text-slate-200">ආයුබෝවන්! මම Mitzii AI Assistant. අධ්‍යාපනයට අදාළ ඕනෑම ගැටළුවක් දැන් මගෙන් නිවැරදිව අසා දැනගන්න.</p>
+                        <div id="chatMessages" class="flex-grow overflow-y-auto space-y-4 pr-3 text-sm">
+                            <div class="bg-slate-900/90 p-4 rounded-2xl max-w-[85%] border border-sky-500/20 shadow-lg">
+                                <p class="text-slate-200">ආයුබෝවන්! මම **Mitzii AI** නිල අධ්‍යාපනික සහායකයා වෙමි. ඔබට අධ්‍යාපනයට, විද්‍යාවට හෝ ඕනෑම විෂයයකට අදාළ ගැටළුවක් දැන් මගෙන් අසන්න.</p>
                             </div>
                         </div>
 
                         <!-- Chat Input -->
-                        <div class="mt-4 pt-3 border-t border-slate-800 flex gap-2">
-                            <input type="text" id="aiInput" onkeypress="handleAiKeyPress(event)" placeholder="Ask any study question..." class="flex-grow bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-sky-500 shadow-inner">
-                            <button onclick="sendAiQuery()" class="bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white px-6 py-3 rounded-xl text-sm font-semibold transition-all shadow-lg shadow-sky-600/30 border border-sky-400/30">
-                                <i class="fa-solid fa-paper-plane"></i>
+                        <div class="mt-6 pt-4 border-t border-sky-500/20 flex gap-3">
+                            <input type="text" id="aiInput" onkeypress="handleAiKeyPress(event)" placeholder="Ask Mitzii AI anything about your studies..." class="flex-grow bg-slate-950/90 border border-sky-500/30 rounded-2xl px-5 py-4 text-sm text-slate-200 focus:outline-none focus:border-sky-400 shadow-inner">
+                            <button onclick="sendAiQuery()" class="bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white px-8 py-4 rounded-2xl text-sm font-bold transition-all shadow-xl shadow-sky-600/30 border border-sky-400/30 flex items-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i> Send
                             </button>
                         </div>
                     </div>
 
-                    <!-- ADMIN PANEL (Visible ONLY when ?admin=mitzii is in URL) -->
-                    <div id="adminPanelSection" class="hidden lg:col-span-3 glass-cyber p-6 rounded-3xl border border-amber-500/40">
-                        <div class="flex items-center gap-3 pb-4 border-b border-amber-500/20 mb-6">
-                            <div class="w-10 h-10 bg-amber-500/20 text-amber-400 rounded-xl flex items-center justify-center border border-amber-500/30"><i class="fa-solid fa-user-shield"></i></div>
+                    <!-- ADMIN CONTROL PANEL (Visible ONLY when ?admin=mitzii in URL) -->
+                    <div id="adminPanelSection" class="hidden lg:col-span-3 glass-official p-8 rounded-3xl border border-amber-500/40 shadow-2xl">
+                        <div class="flex items-center gap-4 pb-6 border-b border-amber-500/20 mb-6">
+                            <div class="w-12 h-12 bg-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center border border-amber-500/30 shadow-lg"><i class="fa-solid fa-user-shield text-xl"></i></div>
                             <div>
-                                <h3 class="font-bold text-base cyber-font text-amber-400">Secure Admin Control Panel</h3>
-                                <p class="text-xs text-slate-400">Add new past papers directly to the database (Only visible to Mitzii)</p>
+                                <h3 class="font-black text-xl cyber-font text-amber-400">Official Admin Control Panel</h3>
+                                <p class="text-xs text-slate-400 mt-0.5">Publish new past papers directly to Mitzii Lk database (Restricted to Mitzii)</p>
                             </div>
                         </div>
 
-                        <form id="addPaperForm" onsubmit="addNewPaper(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <form id="addPaperForm" onsubmit="addNewPaper(event)" class="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div>
-                                <label class="block text-xs text-slate-300 mb-1">Paper Title</label>
-                                <input type="text" id="newTitle" required placeholder="e.g. 2025 A/L Physics Paper" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-amber-500">
+                                <label class="block text-xs font-bold text-slate-300 mb-2">Paper Title</label>
+                                <input type="text" id="newTitle" required placeholder="e.g. 2025 A/L Biology Paper I" class="w-full bg-slate-950/90 border border-slate-700 rounded-2xl px-4 py-3 text-xs text-slate-200 focus:outline-none focus:border-amber-500 shadow-inner">
                             </div>
                             <div>
-                                <label class="block text-xs text-slate-300 mb-1">Subject / Category</label>
-                                <input type="text" id="newCategory" required placeholder="e.g. Physics" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-amber-500">
+                                <label class="block text-xs font-bold text-slate-300 mb-2">Subject / Category</label>
+                                <input type="text" id="newCategory" required placeholder="e.g. Biology" class="w-full bg-slate-950/90 border border-slate-700 rounded-2xl px-4 py-3 text-xs text-slate-200 focus:outline-none focus:border-amber-500 shadow-inner">
                             </div>
                             <div>
-                                <label class="block text-xs text-slate-300 mb-1">Download Direct URL</label>
-                                <input type="url" id="newUrl" required placeholder="https://example.com/paper.pdf" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-amber-500">
+                                <label class="block text-xs font-bold text-slate-300 mb-2">Download Direct URL</label>
+                                <input type="url" id="newUrl" required placeholder="https://example.com/paper.pdf" class="w-full bg-slate-950/90 border border-slate-700 rounded-2xl px-4 py-3 text-xs text-slate-200 focus:outline-none focus:border-amber-500 shadow-inner">
                             </div>
-                            <div class="sm:col-span-3">
-                                <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-bold text-xs transition-all shadow-lg shadow-amber-500/20">
-                                    <i class="fa-solid fa-plus mr-1"></i> Publish Paper to Database
+                            <div class="md:col-span-3">
+                                <button type="submit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black text-sm transition-all shadow-xl shadow-amber-500/25 border border-amber-300/30 flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-circle-plus"></i> Publish Paper to Database
                                 </button>
                             </div>
                         </form>
@@ -256,43 +284,43 @@
 
         </main>
 
-        <!-- FLOATING BOTTOM NAVIGATION BAR -->
-        <nav class="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 glass-cyber px-5 py-2 rounded-full border border-sky-500/30 shadow-2xl flex items-center gap-3">
-            <button onclick="switchPage('home')" id="nav-btn-home" class="nav-btn px-4 py-2 rounded-full text-xs font-semibold bg-sky-600 text-white transition-all flex items-center gap-2 shadow-md">
-                <i class="fa-solid fa-house"></i> Home
+        <!-- FLOATING MOBILE NAVIGATION BAR -->
+        <nav class="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-45 glass-official px-6 py-2.5 rounded-full border border-sky-500/30 shadow-2xl flex items-center gap-4">
+            <button onclick="switchPage('home')" id="mob-btn-home" class="mob-nav p-3 rounded-full bg-sky-600 text-white transition-all shadow-md">
+                <i class="fa-solid fa-house text-sm"></i>
             </button>
-            <button onclick="switchPage('papers')" id="nav-btn-papers" class="nav-btn px-4 py-2 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all flex items-center gap-2">
-                <i class="fa-solid fa-file-lines"></i> Papers
+            <button onclick="switchPage('papers')" id="mob-btn-papers" class="mob-nav p-3 rounded-full text-slate-300 hover:text-white transition-all">
+                <i class="fa-solid fa-file-lines text-sm"></i>
             </button>
-            <button onclick="switchPage('ai')" id="nav-btn-ai" class="nav-btn px-4 py-2 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all flex items-center gap-2">
-                <i class="fa-solid fa-brain"></i> AI Companion
+            <button onclick="switchPage('ai')" id="mob-btn-ai" class="mob-nav p-3 rounded-full text-slate-300 hover:text-white transition-all">
+                <i class="fa-solid fa-brain text-sm"></i>
             </button>
         </nav>
 
-        <!-- FOOTER -->
-        <footer class="glass-cyber border-t border-sky-500/20 text-center py-4 text-xs text-slate-400">
-            <p>&copy; 2026 Mitzii Lk. Built with Advanced Cyber Framework for Sri Lankan Students.</p>
+        <!-- OFFICIAL FOOTER -->
+        <footer class="glass-official border-t border-sky-500/20 text-center py-6 text-xs text-slate-400">
+            <p>&copy; 2026 Mitzii Lk. Official Cyber Educational Portal. All Rights Reserved.</p>
         </footer>
     </div>
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Cyber Starry Background Particle Generator
+        // Deep Blue Floating Particles Generator
         const cyberBg = document.getElementById('cyberBg');
-        for (let i = 0; i < 40; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            const size = (Math.random() * 3 + 1) + 'px';
-            star.style.width = size;
-            star.style.height = size;
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
-            star.style.setProperty('--drift-duration', (Math.random() * 15 + 10) + 's');
-            cyberBg.appendChild(star);
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            const size = (Math.random() * 4 + 2) + 'px';
+            particle.style.width = size;
+            particle.style.height = size;
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.setProperty('--speed', (Math.random() * 8 + 6) + 's');
+            particle.style.setProperty('--drift', (Math.random() * 100 - 50) + 'px');
+            particle.style.animationDelay = (Math.random() * 5) + 's';
+            cyberBg.appendChild(particle);
         }
 
-        // Secure Telegram Force-Sub Logic
+        // Strict Telegram Force-Sub Logic
         let verifiedChannels = [false, false, false, false];
 
         function verifyChannel(index) {
@@ -308,8 +336,8 @@
             if (count === 4) {
                 btn.disabled = false;
                 btn.classList.remove('bg-slate-800', 'text-slate-500', 'cursor-not-allowed');
-                btn.classList.add('bg-gradient-to-r', 'from-sky-500', 'to-indigo-600', 'text-white', 'cursor-pointer', 'shadow-lg', 'shadow-sky-500/40');
-                btn.innerHTML = `🚀 Enter Website Now <i class="fa-solid fa-arrow-right ml-1"></i>`;
+                btn.classList.add('bg-gradient-to-r', 'from-sky-500', 'to-blue-600', 'text-white', 'cursor-pointer', 'shadow-2xl', 'shadow-sky-500/50');
+                btn.innerHTML = `🚀 Enter Mitzii Lk Portal Now <i class="fa-solid fa-arrow-right ml-2"></i>`;
             }
         }
 
@@ -320,7 +348,7 @@
                 mainApp.classList.remove('hidden');
                 mainApp.classList.add('flex');
             } else {
-                alert("කරුණාකර Telegram channels 4 ටම Join වන්න!");
+                alert("කරුණාකර Telegram channels 4 ටම අනිවාර්යයෙන්ම Join වන්න!");
             }
         }
 
@@ -344,22 +372,39 @@
             document.querySelectorAll('.page-content').forEach(el => el.classList.add('hidden'));
             document.getElementById('page-' + pageId).classList.remove('hidden');
 
-            document.querySelectorAll('.nav-btn').forEach(btn => {
+            // Update Desktop Nav Buttons
+            document.querySelectorAll('.desktop-nav').forEach(btn => {
+                btn.classList.remove('bg-sky-600', 'text-white', 'shadow-lg');
+                btn.classList.add('text-slate-300');
+            });
+            const activeDesktopBtn = document.getElementById('desktop-btn-' + pageId);
+            if(activeDesktopBtn) {
+                activeDesktopBtn.classList.add('bg-sky-600', 'text-white', 'shadow-lg');
+                activeDesktopBtn.classList.remove('text-slate-300');
+            }
+
+            // Update Mobile Nav Buttons
+            document.querySelectorAll('.mob-nav').forEach(btn => {
                 btn.classList.remove('bg-sky-600', 'text-white', 'shadow-md');
                 btn.classList.add('text-slate-300');
             });
-            const activeBtn = document.getElementById('nav-btn-' + (pageId === 'ai' ? 'ai' : pageId));
-            activeBtn.classList.add('bg-sky-600', 'text-white', 'shadow-md');
-            activeBtn.classList.remove('text-slate-300');
+            const activeMobBtn = document.getElementById('mob-btn-' + pageId);
+            if(activeMobBtn) {
+                activeMobBtn.classList.add('bg-sky-600', 'text-white', 'shadow-md');
+                activeMobBtn.classList.remove('text-slate-300');
+            }
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Past Papers Database
-        let papers = JSON.parse(localStorage.getItem('mitzii_cyber_papers')) || [
-            { title: "2024 A/L Combined Mathematics Paper I & II", category: "Mathematics", url: "https://www.doenets.lk" },
+        // Past Papers Database & Management
+        let papers = JSON.parse(localStorage.getItem('mitzii_official_papers')) || [
+            { title: "2024 A/L Combined Mathematics Paper I & II (Official)", category: "Mathematics", url: "https://www.doenets.lk" },
             { title: "2024 A/L Physics Resource & Past Paper", category: "Physics", url: "https://www.doenets.lk" },
-            { title: "2023 A/L Chemistry Tamil / Sinhala Medium", category: "Chemistry", url: "https://www.doenets.lk" },
-            { title: "G.C.E. O/L Science Model Paper 2025", category: "Science", url: "https://www.doenets.lk" }
+            { title: "2023 A/L Chemistry Sinhala/Tamil Medium", category: "Chemistry", url: "https://www.doenets.lk" },
+            { title: "2024 A/L Biology Structured Essay Paper", category: "Biology", url: "https://www.doenets.lk" },
+            { title: "G.C.E. O/L Science Model Paper 2025", category: "Science", url: "https://www.doenets.lk" },
+            { title: "G.C.E. O/L Mathematics Paper 2024", category: "Mathematics", url: "https://www.doenets.lk" }
         ];
 
         function renderPapers(filter = "") {
@@ -368,19 +413,19 @@
             const filtered = papers.filter(p => p.title.toLowerCase().includes(filter.toLowerCase()) || p.category.toLowerCase().includes(filter.toLowerCase()));
             
             if (filtered.length === 0) {
-                listContainer.innerHTML = `<p class="text-center text-slate-400 py-6 text-sm">No past papers found matching your search.</p>`;
+                listContainer.innerHTML = `<p class="text-center text-slate-400 py-12 text-sm">No past papers found matching your search query.</p>`;
                 return;
             }
 
             filtered.forEach((paper) => {
                 listContainer.innerHTML += `
-                    <div class="glass-card p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border border-slate-800 hover:border-sky-500/50 transition-all">
+                    <div class="glass-card p-5 md:p-6 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border border-sky-500/20">
                         <div>
-                            <span class="text-[10px] bg-sky-500/20 text-sky-300 px-2.5 py-1 rounded-full font-semibold uppercase border border-sky-500/30">${paper.category}</span>
-                            <h4 class="font-semibold text-sm text-slate-100 mt-2">${paper.title}</h4>
+                            <span class="text-[10px] bg-sky-500/20 text-sky-300 px-3 py-1 rounded-full font-bold uppercase tracking-wider border border-sky-500/30">${paper.category}</span>
+                            <h4 class="font-bold text-sm md:text-base text-slate-100 mt-2.5">${paper.title}</h4>
                         </div>
-                        <a href="${paper.url}" target="_blank" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all shadow-md shadow-sky-600/30 border border-sky-400/30">
-                            <i class="fa-solid fa-download"></i> Download Paper
+                        <a href="${paper.url}" target="_blank" class="w-full md:w-auto px-6 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold flex items-center justify-center gap-2.5 transition-all shadow-lg shadow-sky-600/30 border border-sky-400/30">
+                            <i class="fa-solid fa-cloud-arrow-down"></i> Download Paper
                         </a>
                     </div>
                 `;
@@ -399,15 +444,15 @@
             const url = document.getElementById('newUrl').value;
 
             papers.unshift({ title, category, url });
-            localStorage.setItem('mitzii_cyber_papers', JSON.stringify(papers));
+            localStorage.setItem('mitzii_official_papers', JSON.stringify(papers));
             renderPapers();
             document.getElementById('addPaperForm').reset();
-            alert("Past Paper successfully published to database!");
+            alert("Past Paper successfully published to Mitzii Lk database!");
         }
 
         renderPapers();
 
-        // AI Chat Integration
+        // Mitzii AI Chat Integration
         function handleAiKeyPress(e) {
             if (e.key === 'Enter') sendAiQuery();
         }
@@ -421,7 +466,7 @@
             
             chatMessages.innerHTML += `
                 <div class="flex justify-end">
-                    <div class="bg-sky-600 text-white p-3.5 rounded-2xl max-w-[85%] text-sm shadow-md border border-sky-400/30">
+                    <div class="bg-sky-600 text-white p-4 rounded-2xl max-w-[85%] text-sm shadow-xl border border-sky-400/30">
                         <p>${query}</p>
                     </div>
                 </div>
@@ -432,8 +477,8 @@
             const loadingId = "loading_" + Date.now();
             chatMessages.innerHTML += `
                 <div id="${loadingId}" class="flex justify-start">
-                    <div class="bg-slate-900 text-slate-400 p-3.5 rounded-2xl max-w-[85%] text-sm border border-slate-800 flex items-center gap-2">
-                        <i class="fa-solid fa-spinner animate-spin text-sky-400"></i> AI is analyzing query...
+                    <div class="bg-slate-900 text-slate-400 p-4 rounded-2xl max-w-[85%] text-sm border border-sky-500/20 flex items-center gap-3">
+                        <i class="fa-solid fa-spinner animate-spin text-sky-400 text-base"></i> Mitzii AI is generating response...
                     </div>
                 </div>
             `;
@@ -445,11 +490,11 @@
                 
                 document.getElementById(loadingId).remove();
                 
-                const aiReply = data.status && data.result ? data.result : "සමාවන්න, AI පිළිතුර ලබාගැනීමේදී දෝෂයක් සිදු විය. කරුණාකර නැවත උත්සාහ කරන්න.";
+                const aiReply = data.status && data.result ? data.result : "සමාවන්න, Mitzii AI පද්ධතියෙන් පිළිතුරක් ලබාගැනීමේදී දෝෂයක් සිදු විය. කරුණාකර නැවත උත්සාහ කරන්න.";
 
                 chatMessages.innerHTML += `
                     <div class="flex justify-start">
-                        <div class="bg-slate-900 text-slate-200 p-3.5 rounded-2xl max-w-[85%] text-sm border border-slate-800 shadow-lg">
+                        <div class="bg-slate-900 text-slate-200 p-4 rounded-2xl max-w-[85%] text-sm border border-sky-500/20 shadow-xl leading-relaxed">
                             <p>${aiReply}</p>
                         </div>
                     </div>
@@ -458,8 +503,8 @@
                 document.getElementById(loadingId).remove();
                 chatMessages.innerHTML += `
                     <div class="flex justify-start">
-                        <div class="bg-rose-500/20 text-rose-300 p-3.5 rounded-2xl max-w-[85%] text-sm border border-rose-500/30">
-                            <p>Network Error! කරුණාකර අන්තර්ජාල සම්බන්ධතාවය පරීක්ෂා කරන්න.</p>
+                        <div class="bg-rose-500/20 text-rose-300 p-4 rounded-2xl max-w-[85%] text-sm border border-rose-500/30 shadow-xl">
+                            <p>Network Connection Error! කරුණාකර ඔබේ අන්තර්ජාල සම්බන්ධතාවය පරීක්ෂා කරන්න.</p>
                         </div>
                     </div>
                 `;
